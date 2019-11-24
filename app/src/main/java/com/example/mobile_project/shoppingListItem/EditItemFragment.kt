@@ -56,7 +56,7 @@ class EditItemFragment : Fragment() {
                     args.listId,
                     binding.priceEditText.text.toString().toInt())
                 Navigation.findNavController(view!!).navigate(
-                    EditItemFragmentDirections.actionEditItemFragmentToShoppingListItemFragment(args.listId))
+                    EditItemFragmentDirections.actionEditItemFragmentToShoppingListItemFragment(args.listId, args.listName))
             }
         }
 

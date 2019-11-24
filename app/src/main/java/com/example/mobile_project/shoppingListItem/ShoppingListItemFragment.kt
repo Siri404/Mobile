@@ -54,7 +54,7 @@ class ShoppingListItemFragment : Fragment() {
 
         binding.addItem.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                ShoppingListItemFragmentDirections.actionShoppingListItemFragmentToAddItemFragment(args.listId)))
+                ShoppingListItemFragmentDirections.actionShoppingListItemFragmentToAddItemFragment(args.listId, args.listName)))
 
         val adapter = ShoppingListItemAdapter(ItemClickListener {
                 itemId -> Toast.makeText(binding.root.context, "$itemId", Toast.LENGTH_LONG).show()
@@ -65,7 +65,7 @@ class ShoppingListItemFragment : Fragment() {
                     R.id.menu1 ->
                     {
                         this.findNavController().navigate(ShoppingListItemFragmentDirections
-                            .actionShoppingListItemFragmentToEditItemFragment(args.listId, itemId))
+                            .actionShoppingListItemFragmentToEditItemFragment(args.listId, itemId, args.listName))
                         true
                     }
                     R.id.menu2 ->
