@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/shoppingListFragment">
+
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="com.example.mobile_project.shoppingList.ShoppingListFragment"
+        android:label="Shopping Lists"
+        tools:layout="@layout/fragment_shopping_list">
+        <action
+            android:id="@+id/action_shoppingListFragment_to_addShoppingListFragment"
+            app:destination="@id/addShoppingListFragment" />
+        <action
+            android:id="@+id/action_shoppingListFragment_to_shoppingListItemFragment"
+            app:destination="@id/shoppingListItemFragment" />
+        <action
+            android:id="@+id/action_shoppingListFragment_to_renameShoppingListFragment"
+            app:destination="@id/renameShoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addShoppingListFragment"
+        android:name="com.example.mobile_project.shoppingList.AddShoppingListFragment"
+        android:label="Add new list"
+        tools:layout="@layout/fragment_add_shopping_list">
+        <action
+            android:id="@+id/action_addShoppingListFragment_to_shoppingListFragment"
+            app:destination="@id/shoppingListFragment"
+            app:popUpTo="@+id/shoppingListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingListItemFragment"
+        android:name="com.example.mobile_project.shoppingListItem.ShoppingListItemFragment"
+        android:label="Shopping List"
+        tools:layout="@layout/fragment_shopping_list_item">
+        <argument
+            android:name="listId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_shoppingListItemFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_shoppingListItemFragment_to_editItemFragment"
+            app:destination="@id/editItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.mobile_project.shoppingListItem.AddItemFragment"
+        android:label="Add item"
+        tools:layout="@layout/fragment_add_item">
+        <action
+            android:id="@+id/action_addItemFragment_to_shoppingListItemFragment"
+            app:destination="@id/shoppingListItemFragment"
+            app:popUpTo="@+id/shoppingListItemFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="listId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/renameShoppingListFragment"
+        android:name="com.example.mobile_project.shoppingList.RenameShoppingListFragment"
+        android:label="fragment_rename_shopping_list"
+        tools:layout="@layout/fragment_rename_shopping_list" >
+        <argument
+            android:name="listId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_renameShoppingListFragment_to_shoppingListFragment"
+            app:destination="@id/shoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.example.mobile_project.shoppingListItem.EditItemFragment"
+        android:label="EditItemFragment" >
+        <argument
+            android:name="listId"
+            app:argType="long" />
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_editItemFragment_to_shoppingListItemFragment"
+            app:destination="@id/shoppingListItemFragment"
+            app:popUpTo="@+id/shoppingListItemFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

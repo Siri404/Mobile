@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="clickListener"
+            type="com.example.mobile_project.shoppingList.ListClickListener" />
+        <variable
+            name="item"
+            type="com.example.mobile_project.model.ShoppingList" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:onClick="@{() -> clickListener.onClick(item)}"
+                android:id="@+id/itemNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/optionsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:text="@string/optionsMenu"
+                android:textAppearance="?android:textAppearanceLarge" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
