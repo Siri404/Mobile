@@ -60,12 +60,12 @@ class ShoppingListViewModel(
         }
     }
 
-    private val _navigateToShoppingListItem = MutableLiveData<Long>()
+    private val _navigateToShoppingListItem = MutableLiveData<Pair<Long, String>>()
     val navigateToShoppingListItem
         get() = _navigateToShoppingListItem
 
-    fun onListClicked(id: Long){
-        _navigateToShoppingListItem.value = id
+    fun onListClicked(id: Long, name: String){
+        _navigateToShoppingListItem.value = Pair(id, name)
     }
 
     fun onShoppingListItemNavigated(){

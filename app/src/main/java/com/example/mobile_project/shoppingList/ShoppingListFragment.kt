@@ -42,15 +42,15 @@ class ShoppingListFragment : Fragment() {
             ShoppingListFragmentDirections.actionShoppingListFragmentToAddShoppingListFragment()))
 
         val adapter = ShoppingListAdapter(ListClickListener {
-                listId -> shoppingListViewModel.onListClicked(listId)
+                listId, listName -> shoppingListViewModel.onListClicked(listId, listName)
         },
             MenuOnClickListener {
-                    item, listId ->
+                    item, listId, listName ->
                 when (item!!.itemId) {
                     R.id.menu1 ->
                     {
                         this.findNavController().navigate(ShoppingListFragmentDirections
-                            .actionShoppingListFragmentToRenameShoppingListFragment(listId))
+                            .actionShoppingListFragmentToRenameShoppingListFragment(listId, listName))
                         true
                     }
                     R.id.menu2 ->
@@ -73,7 +73,7 @@ class ShoppingListFragment : Fragment() {
         shoppingListViewModel.navigateToShoppingListItem.observe(this, Observer {
             list -> list?.let {
                 this.findNavController().navigate(
-                    ShoppingListFragmentDirections.actionShoppingListFragmentToShoppingListItemFragment(list))
+                    ShoppingListFragmentDirections.actionShoppingListFragmentToShoppingListItemFragment(list.first, list.second))
                 shoppingListViewModel.onShoppingListItemNavigated()
             }
         })

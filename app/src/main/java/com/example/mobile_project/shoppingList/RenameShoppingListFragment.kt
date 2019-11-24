@@ -37,6 +37,7 @@ class RenameShoppingListFragment : Fragment() {
             viewModelFactory).get(ShoppingListViewModel::class.java)
 
         val args = RenameShoppingListFragmentArgs.fromBundle(arguments!!)
+        binding.listNameEditText.setText(args.listName)
 
         binding.shoppingListViewModel = shoppingListViewModel
 

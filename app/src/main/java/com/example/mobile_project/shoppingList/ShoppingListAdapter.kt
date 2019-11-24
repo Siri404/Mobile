@@ -30,6 +30,7 @@ class ShoppingListAdapter(val clickListener: ListClickListener, val menuListener
                 popup.inflate(R.menu.options_menu)
                 //adding click listener
                 menuListener.listId = item.listId
+                menuListener.listName = item.listName
                 popup.setOnMenuItemClickListener(menuListener)
                 //displaying the popup
                 popup.show()
@@ -67,11 +68,12 @@ class ListDiffCalback: DiffUtil.ItemCallback<ShoppingList>(){
 
 }
 
-class ListClickListener(val clickListener:(listId: Long) -> Unit){
-    fun onClick(shoppingList: ShoppingList) = clickListener(shoppingList.listId)
+class ListClickListener(val clickListener:(listId: Long, listName: String) -> Unit){
+    fun onClick(shoppingList: ShoppingList) = clickListener(shoppingList.listId, shoppingList.listName)
 }
 
-class MenuOnClickListener(val clickListener: (item:MenuItem?, listId: Long) -> Boolean): PopupMenu.OnMenuItemClickListener {
+class MenuOnClickListener(val clickListener: (item:MenuItem?, listId: Long, listName: String) -> Boolean): PopupMenu.OnMenuItemClickListener {
     var listId by Delegates.notNull<Long>()
-    override fun onMenuItemClick(item: MenuItem?): Boolean = clickListener(item, listId)
+    var listName by Delegates.notNull<String>()
+    override fun onMenuItemClick(item: MenuItem?): Boolean = clickListener(item, listId, listName)
 }
